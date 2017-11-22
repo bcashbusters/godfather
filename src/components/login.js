@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 
 const styles = theme => ({
   container: {
@@ -36,7 +37,7 @@ class LoginForm extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
          <div style={titleContainerStyle}>
-         <Typography type="headline" className='title' gutterBottom>Login</Typography>
+         <Typography type="headline" className='title' gutterBottom>GoFa Bank</Typography>
          </div>
         <TextField
           id="username"
@@ -53,6 +54,11 @@ class LoginForm extends React.Component {
           autoComplete="current-password"
           margin="normal"
         />
+        <div style={titleContainerStyle}>
+          <Button raised color="primary" className={classes.button}>
+              Sign On
+          </Button>
+        </div>
       </form>
     );
   }
