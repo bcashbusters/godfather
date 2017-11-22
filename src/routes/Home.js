@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import LoginForm from '../components/login';
 
 class Home extends Component {
     render() {
-        return (<h1> Home</h1>);
+        return (<LoginForm />);
     }
 }
-
-Home.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default Home;

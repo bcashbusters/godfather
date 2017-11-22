@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
@@ -28,7 +27,7 @@ const styles = theme => ({
   },
   list: {
     width: '300px',
-    background: theme.palette.background.paper,
+    background: theme.palette.background.paper
   },
 });
 
@@ -48,6 +47,17 @@ class Header extends Component {
 
   render() {
     const { classes } = this.props;
+    const logoContainerStyle = {
+      position: 'absolute',
+      width: 'calc(100% - 36px)',
+      textAlign: 'center',
+      paddingTop: '15px'
+    };
+    const buttonStyle = {
+      position: 'relative',
+      zIndex: 1
+    }
+
     const sideList = (
       <div className={classes.list}>
         <List>
@@ -80,14 +90,15 @@ class Header extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" color="primary">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
+            <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" style={buttonStyle}>
               <MenuIcon onClick={this.toggleDrawer()} />
             </IconButton>
-            <Typography type="title" color="inherit">
-              God Father
-            </Typography>
+            
+            <div style={logoContainerStyle}>
+            <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px'/>
+          </div>
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.drawer.open} onRequestClose={this.toggleDrawer()}>
