@@ -6,8 +6,9 @@ import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
 import Assignment from 'material-ui-icons/Assignment';
 import ShoppingBasket from 'material-ui-icons/ShoppingBasket';
-import Subheader from 'material-ui/List/ListSubheader';
 import Typography from 'material-ui/Typography';
+import { Link } from 'react-router-dom'
+
 
 const styles = theme => ({
   root: {
@@ -41,12 +42,14 @@ function GameInfo(props) {
           <ListItemText primary="Do Tasks"  />
         </ListItem>
         <Divider />
-        <ListItem button>
-          <Avatar>
-            <ShoppingBasket />
-          </Avatar>
-          <ListItemText primary="Shop with our Merchant offers" />
-        </ListItem>
+        <Link to="offers" style={{ textDecoration: 'none' }}>
+            <ListItem button >
+            <Avatar>
+                <ShoppingBasket />
+            </Avatar>
+            <ListItemText primary="Shop with our Merchant offers" />
+            </ListItem>
+        </Link>
       </List>
     </div>
   );
