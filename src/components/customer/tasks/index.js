@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
+import Button from 'material-ui/Button';
 import ShoppingBasket from 'material-ui-icons/ShoppingBasket';
 import SettingsInputSvideo from 'material-ui-icons/SettingsInputSvideo';
 import CameraEnhance from 'material-ui-icons/CameraEnhance';
@@ -31,23 +32,25 @@ function Tasks(props) {
         <div className={classes.root}>
           <div style={titleStyle}>
             <Typography
-                type="headline" gutterBottom>How To Improve Your Score</Typography>
+                type="headline" gutterBottom>Lets Play</Typography>
           </div>
           <List>
             <Divider />
-            <ListItem button>
-              <Avatar>
-                <CameraEnhance />
-              </Avatar>
-              <ListItemText primary="Use Camera to Search Offers " secondary="High scoring task" />
-            </ListItem>
+            <Link to="gameCam" style={{ textDecoration: 'none' }}>
+              <ListItem button>
+                <Avatar>
+                  <CameraEnhance />
+                </Avatar>
+                <ListItemText primary="Use Camera to Search Offers " secondary="Earn 20pts" />
+              </ListItem>
+            </Link>
             <Divider />
             <Divider />
             <ListItem button>
               <Avatar>
                 <SettingsInputSvideo />
               </Avatar>
-              <ListItemText primary="Play a game"  />
+              <ListItemText primary="Play a game"  secondary="Earn 15pts" />
             </ListItem>
             <Divider />
             <Link to="offers" style={{ textDecoration: 'none' }}>
@@ -55,7 +58,7 @@ function Tasks(props) {
                 <Avatar>
                   <ShoppingBasket />
                 </Avatar>
-                <ListItemText primary="Shop with our Merchant offers" />
+                <ListItemText primary="Shop with our Merchant offers"  secondary="Earn 10pts" />
               </ListItem>
             </Link>
             <Divider />
@@ -64,7 +67,7 @@ function Tasks(props) {
                 <Avatar>
                   <AccountCircle />
                 </Avatar>
-                <ListItemText primary="Enroll your friends" />
+                <ListItemText primary="Enroll your friends" secondary="Earn 10pts" />
               </ListItem>
             </Link>
           </List>
