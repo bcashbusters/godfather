@@ -50,9 +50,10 @@ class Header extends Component {
     const { classes } = this.props;
     const logoContainerStyle = {
       position: 'absolute',
-      width: 'calc(100% - 36px)',
+      width: '100%',
       textAlign: 'center',
-      paddingTop: '15px'
+      top: '10px',
+      left: '0'
     };
     const buttonStyle = {
       position: 'relative',

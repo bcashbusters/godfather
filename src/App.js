@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Home from './routes/Home';
 import AccountSummary from './routes/AccountSummary';
 import MerchantOffers from './components/customer/merchantOffers';
-import GameInfo from './components/customer/gameInfo';
+import GameHome from './containers/gameHome';
 import Tasks from './components/customer/tasks';
 import GameCam from './components/GameCam';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -34,7 +34,7 @@ class App extends Component {
               <Route path='/home' component={Home} />
               <Route path='/asum' component={AccountSummary} />
               <Route path='/offers' component={MerchantOffers} />
-              <Route path='/gameInfo' component={GameInfo} />
+              <Route path='/gameInfo' component={GameHome} />
               <Route path='/gameCam' component={GameCam} />
               <Route path='/tasks' component={Tasks} />
             </div>

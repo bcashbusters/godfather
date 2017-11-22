@@ -35,12 +35,14 @@ function Tasks(props) {
           </div>
           <List>
             <Divider />
-            <ListItem button>
-              <Avatar>
-                <CameraEnhance />
-              </Avatar>
-              <ListItemText primary="Use Camera to Search Offers " secondary="High scoring task" />
-            </ListItem>
+            <Link to="gameCam" style={{ textDecoration: 'none' }}>
+              <ListItem button>
+                <Avatar>
+                  <CameraEnhance />
+                </Avatar>
+                <ListItemText primary="Use Camera to Search Offers " secondary="High scoring task" />
+              </ListItem>
+            </Link>
             <Divider />
             <Divider />
             <ListItem button>
