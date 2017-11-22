@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import LeaderBoard from '../components/dashbaord/leaderboard';
+import GameInfo from '../components/customer/gameInfo';
 
 class Home extends Component {
     render() {
-        return (<LeaderBoard
+        return (<GameInfo
 
 
         />);

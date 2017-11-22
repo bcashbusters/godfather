@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Home from './routes/Home';
+import LeaderBoard from './routes/Leaderboard';
 import AccountSummary from './routes/AccountSummary';
 import MerchantOffers from './components/customer/merchantOffers';
 import GameInfo from './components/customer/gameInfo';
@@ -21,7 +22,7 @@ const muiTheme = createMuiTheme({
     error: red,
     type: 'light'
   })
-})
+});
 
 class App extends Component {
   render() {
@@ -37,6 +38,7 @@ class App extends Component {
               <Route path='/gameInfo' component={GameInfo} />
               <Route path='/gameCam' component={GameCam} />
               <Route path='/tasks' component={Tasks} />
+              <Route path='/leaderboard' component={LeaderBoard} />
             </div>
           </BrowserRouter>
         </MuiThemeProvider>

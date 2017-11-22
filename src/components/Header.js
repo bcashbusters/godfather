@@ -79,6 +79,9 @@ class Header extends Component {
             <ListItem button component="a" href="gameInfo">
               <ListItemText primary="Score Games" />
             </ListItem>
+          <ListItem button component="a" href="leaderboard">
+            <ListItemText primary="Leader Board" />
+          </ListItem>
           <Divider />
         </List>
       </div>
