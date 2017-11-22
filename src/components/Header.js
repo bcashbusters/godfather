@@ -61,26 +61,26 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
+        <ListItem button>
+            <ListItemText primary="User" />
           </ListItem>
         </List>
         <Divider />
         <List>
           <ListItem button>
-            <ListItemText primary="Trash" />
+            <ListItemText primary="Statements" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="Profile" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button component="a" href="#simple-list">
+            <ListItemText primary="Rewards" />
           </ListItem>
           <ListItem button component="a" href="#simple-list">
-            <ListItemText primary="Spam" />
+            <ListItemText primary="Score Games" />
           </ListItem>
         </List>
         <Divider />
