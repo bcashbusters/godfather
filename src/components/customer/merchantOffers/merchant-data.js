@@ -21,6 +21,10 @@ const tileData = [
         img: 'images/tesco.jpg',
         title: '12% off',
         author: 'Tesco',
+      },{
+        img: 'images/amazon.ico',
+        title: '12% off on Electronics',
+        author: 'Amazon',
       },
     {
         img: 'images/starbucks.jpg',

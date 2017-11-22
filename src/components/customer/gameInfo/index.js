@@ -72,13 +72,14 @@ function GameInfo(props) {
                 </div>
                 <Divider />
                 <div>
-                    <BottomNavigation
-                        showLabels>
-                        <BottomNavigationButton label="Your Badges" icon={<CardMembership />} />
+                    <BottomNavigation>
+                    <Link to="tasks" style={{ textDecoration: 'none' }}>
+                          <BottomNavigationButton label="Your Badges" icon={<CardMembership />} />
+                    </Link>
                       <Link to="tasks" style={{ textDecoration: 'none' }}>
                         <BottomNavigationButton label="Play" icon={<Shop />}/>
                       </Link>
-                      <Link to="tasks" style={{ textDecoration: 'none' }}>
+                      <Link to="leaderboard" style={{ textDecoration: 'none' }}>
                         <BottomNavigationButton label="Leader board" icon={<TrackChanges />}/>
                       </Link>
                     </BottomNavigation>
