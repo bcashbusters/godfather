@@ -12,6 +12,7 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
+import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -61,30 +62,25 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
+        <ListItem button component='a' href='asum'>
+            <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </List>
         <Divider />
-        <List>
           <ListItem button>
-            <ListItemText primary="Trash" />
+            <ListItemText primary="Statements" />
           </ListItem>
+          <ListItem button>
+            <ListItemText primary="Profile" />
+          </ListItem>
+        <Divider />
           <ListItem button component="a" href="#simple-list">
-            <ListItemText primary="Spam" />
+            <ListItemText primary="Rewards" />
           </ListItem>
+            <ListItem button component="a" href="gameInfo">
+              <ListItemText primary="Score Games" />
+            </ListItem>
+          <Divider />
         </List>
-        <Divider />
-        <List></List>
       </div>
     );
 

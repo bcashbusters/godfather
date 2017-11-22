@@ -17,7 +17,7 @@ const styles = theme => ({
   },
   gridList: {
     width: 500,
-    height: 500,
+    height: 600,
   },
 });
 
@@ -26,8 +26,8 @@ function MerchantOffers(props) {
 
   return (
     <div className={classes.container}>
-      <GridList cellHeight={180} className={classes.gridList} cols={3} >
-        <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
+      <GridList cellHeight={180} className={classes.gridList} cols={2} >
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <Subheader component="div">Merchant Offers</Subheader>
         </GridListTile>
         {tileData.map(tile => (
