@@ -1,67 +1,33 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import firebaseui from 'firebaseui';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around'
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: '60%',
-  }
-});
+import firebase from '../firebase';
 
+import 'firebaseui/dist/firebaseui.css';
 
 class LoginForm extends React.Component {
-  
+  shouldComponentUpdate() {
+    return false;
+  }
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const titleContainerStyle = {
-        width: '100%',
-        marginTop: '30px'
+  componentDidMount() {
+    var uiConfig = {
+      signInSuccessUrl: '/asum',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+      ],
     };
 
+    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
+  }
+
+  render() {
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-         <div style={titleContainerStyle}>
-         <Typography type="headline" className='title' gutterBottom>GoFa Bank</Typography>
-         </div>
-        <TextField
-          id="username"
-          label="User Name"
-          className={classes.textField}
-          onChange={this.handleChange('name')}
-          margin="normal"
-        />
-        <TextField
-          id="password"
-          label="Password"
-          className={classes.textField}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
-        />
-        <div style={titleContainerStyle}>
-          <Button raised color="primary" className={classes.button}>
-              Sign On
-          </Button>
-        </div>
-      </form>
+      <div id="firebaseui-auth-container"></div>
     );
   }
 }
 
-export default withStyles(styles)(LoginForm);
+export default LoginForm;

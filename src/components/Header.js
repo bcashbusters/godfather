@@ -62,23 +62,26 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-        <ListItem button>
+          <ListItem button>
             <ListItemText primary="User" />
           </ListItem>
-        <Divider />
+          <Divider />
           <ListItem button>
             <ListItemText primary="Statements" />
           </ListItem>
           <ListItem button>
             <ListItemText primary="Profile" />
           </ListItem>
-        <Divider />
+          <Divider />
           <ListItem button component="a" href="#simple-list">
             <ListItemText primary="Rewards" />
           </ListItem>
-            <ListItem button component="a" href="gameInfo">
-              <ListItemText primary="Score Games" />
-            </ListItem>
+          <ListItem button component="a" href="gameInfo">
+            <ListItemText primary="Score Games" />
+          </ListItem>
+          <ListItem button component="a" href="gameCam">
+            <ListItemText primary="Click a pic" />
+          </ListItem>
           <Divider />
         </List>
       </div>
@@ -91,10 +94,10 @@ class Header extends Component {
             <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" style={buttonStyle}>
               <MenuIcon onClick={this.toggleDrawer()} />
             </IconButton>
-            
+
             <div style={logoContainerStyle}>
-            <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px'/>
-          </div>
+              <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px' />
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.drawer.open} onRequestClose={this.toggleDrawer()}>
