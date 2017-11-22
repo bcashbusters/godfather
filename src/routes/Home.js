@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/login';
+import LeaderBoard from '../components/dashbaord/leaderboard';
 
 class Home extends Component {
     render() {
-        return (<LoginForm />);
+        return (<LeaderBoard
+
+
+        />);
     }
 }
 
