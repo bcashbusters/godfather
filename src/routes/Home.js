@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/login';
+import GameInfo from '../components/customer/gameInfo';
 
 class Home extends Component {
     render() {
-        return (<LoginForm />);
+        return (<GameInfo
+
+
+        />);
     }
 }
 
