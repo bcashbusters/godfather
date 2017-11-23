@@ -6,6 +6,8 @@ import Subheader from 'material-ui/List/ListSubheader';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/Info';
 import tileData from './merchant-data';
+import { connect } from 'react-redux';
+import { addToScore } from '../../../actions/scoreActions';
 
 const styles = theme => ({
   container: {
@@ -21,36 +23,53 @@ const styles = theme => ({
   },
 });
 
-function MerchantOffers(props) {
-  const { classes } = props;
-
-  return (
-    <div className={classes.container}>
-      <GridList cellHeight={180} className={classes.gridList} cols={2} >
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <Subheader component="div">Merchant Offers</Subheader>
-        </GridListTile>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={tile.cols || 1}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton>
-                  <InfoIcon color="rgba(255, 255, 255, 0.54)" />
-                </IconButton>
-              }
-            />
+class MerchantOffers extends  React.Component{
+  render(){
+    return (
+      <div>
+        <GridList cellHeight={180}  cols={2} >
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+            <Subheader component="div">Merchant Offers</Subheader>
           </GridListTile>
-        ))}
-      </GridList>
-    </div>
-  );
+          {tileData.map(tile => (
+            <GridListTile key={tile.img} cols={tile.cols || 1}>
+              <img src={tile.img} alt={tile.title} />
+              <GridListTileBar
+                title={tile.title}
+                subtitle={<span>by: {tile.author}</span>}
+                actionIcon={
+                  <IconButton onClick={()=>{
+                    this.props.addScore(10)}
+                  }>
+                    <InfoIcon color="rgba(255, 255, 255, 0.54)" />
+                  </IconButton>
+                }
+              />
+            </GridListTile>
+          ))}
+        </GridList>
+      </div>
+    );
+  }
 }
 
 MerchantOffers.propTypes = {
   classes: PropTypes.object.isRequired,
+  addScore: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(MerchantOffers);
+
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addScore: (value)=>{
+      dispatch(addToScore(value))
+    }
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MerchantOffers));
