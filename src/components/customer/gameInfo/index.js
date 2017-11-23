@@ -48,8 +48,8 @@ function GameInfo(props) {
             <Card>
                 <CardContent>
                     <img
-                        alt={gameData.avator.alt}
-                        src={gameData.avator.src}
+                        alt={gameData.user.avatar.alt}
+                        src={gameData.user.avatar.src}
                         width="150px"
                     />
                 <Typography type="headline" component="h2">Level</Typography>

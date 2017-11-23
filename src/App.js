@@ -5,7 +5,7 @@ import Home from './routes/Home';
 import LeaderBoard from './routes/Leaderboard';
 import AccountSummary from './routes/AccountSummary';
 import MerchantOffers from './components/customer/merchantOffers';
-import GameHome from './containers/gameHome';
+import GameHome from './routes/gameHome';
 import Tasks from './components/customer/tasks';
 import GameCam from './components/GameCam';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -34,9 +34,9 @@ class App extends Component {
       <Provider store={store}>
       <div className="App">
         <MuiThemeProvider theme={muiTheme}>
-          <Header />
           <BrowserRouter>
             <div>
+              <Header />
               <Route path='/home' component={Home} />
               <Route path='/asum' component={AccountSummary} />
               <Route path='/offers' component={MerchantOffers} />
