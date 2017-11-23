@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 import BalanceInfo from '../components/customer/balanceInfo';
 import RewardsInfo from '../components/customer/rewardsInfo';
+import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
 
 class AccountSummary extends Component {
     render() {
+      const userInfo =  {
+        name: 'John',
+        cardBalance: "$70.00",
+        earnedRewardsPoints: "5674 pts"
+      };
       return (
-        <div>
-        <BalanceInfo balance="$770.00" />
-        <RewardsInfo earnedPoints="5674 pts" />
+        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px'}}>
+
+          <Grid container>
+            <Grid item xs={12}>
+              <Typography type="title" gutterBottom>Welcome {userInfo.name}</Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+                <BalanceInfo balance={userInfo.cardBalance} />
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+                <RewardsInfo earnedPoints={userInfo.earnedRewardsPoints} />
+            </Grid>
+          </Grid>
       </div>
       );
     }

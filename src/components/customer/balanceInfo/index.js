@@ -50,7 +50,9 @@ function BalanceInfo(props) {
         </CardContent>
         <Divider />
         <CardActions>
-          <Button dense>view statement</Button>
+          <div style={{textAlign: 'center', width: '100%'}}>
+          <Button dense color='primary'>view statement</Button>
+          </div>
         </CardActions>
       </Card>
     </div>
