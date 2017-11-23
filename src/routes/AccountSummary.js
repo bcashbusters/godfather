@@ -3,14 +3,11 @@ import BalanceInfo from '../components/customer/balanceInfo';
 import RewardsInfo from '../components/customer/rewardsInfo';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
+import { connect } from 'react-redux';
 
 class AccountSummary extends Component {
     render() {
-      const userInfo =  {
-        name: 'John',
-        cardBalance: "$70.00",
-        earnedRewardsPoints: "5674 pts"
-      };
+      const userInfo =  this.props.userInfo;
       return (
         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px'}}>
 
@@ -30,4 +27,17 @@ class AccountSummary extends Component {
     }
 }
 
-export default AccountSummary;
+
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.userInfo ? state.userInfo:{},
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountSummary);

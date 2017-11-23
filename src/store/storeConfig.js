@@ -8,9 +8,10 @@ export default function configureStore() {
   const middlewares = [
     thunkMiddleware,
   ];
+  const user = 'chris';
   const initialState = {
-    gameInfo: GameInfoData.chris,
-    userInfo: UsersInfo.john
+    gameInfo: GameInfoData[user],
+    userInfo: UsersInfo[user]
   };
   return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
 }

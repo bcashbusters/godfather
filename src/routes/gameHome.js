@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import GameInfo from '../components/customer/gameInfo/index';
-
 import { connect } from 'react-redux';
+
  class GameComponent extends Component {
     render() {
       return (<GameInfo gameData={this.props.gameInfo}/>);
