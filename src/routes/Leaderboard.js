@@ -101,10 +101,11 @@ class LeaderBoard extends Component {
 
       selfScore : 170,
       selfRank : "1st",
+      sR:1,
       ranks : {
-        friends : "1st",
-        local : "4th",
-        global: "456th"
+        friends : {text:"1st",val:1},
+        local : {text:"4th",val:4},
+        global: {text:"456th",val:465}
       }
 
     };
@@ -121,8 +122,8 @@ class LeaderBoard extends Component {
   }
 
   updateState(data) {
-    let newState = JSON.parse(JSON.stringify(this.state));
-    newState.actData = this.state.data[data];
+    let newState = JSON.parse(JSON.stringify(this.sta
+    newState.selfRank = this.state.ranks[data].text;
     this.setState(newState);
   }
 
@@ -153,7 +154,7 @@ class LeaderBoard extends Component {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography type="headline" component="h4" className={this.classes.lb_head_detail}>
-                    4th
+                    {this.state.selfRank}
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
@@ -165,7 +166,7 @@ class LeaderBoard extends Component {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography type="headline" component="h4" className={this.classes.lb_head_detail}>
-                    46pts
+                    {this.state.selfScore}
                   </Typography>
                 </Grid>
               </Grid>
