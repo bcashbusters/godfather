@@ -13,9 +13,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createPalette from 'material-ui/styles/createPalette'
 import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import { blue, amber, red } from 'material-ui/colors';
+import firebase from './firebase';
 
 import { Provider, connect } from 'react-redux';
 import configureStore from './store/storeConfig';
+import { loginUser } from './actions/index';
 
 const store = configureStore();
 const muiTheme = createMuiTheme({
@@ -38,6 +40,11 @@ const AunthenticatedRoutes = (props) =>
   </div>;
 
 class App extends Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(({ displayName }) => {
+      this.props.dispatch(loginUser({ displayName }))});
+  }
+
   render() {
     return (
       <div className="App">
