@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import BalanceInfo from '../components/customer/balanceInfo';
+import RewardsInfo from '../components/customer/rewardsInfo';
 
 class AccountSummary extends Component {
     render() {
-        return (<BalanceInfo balance="$770.00" />);
+      return (
+        <div>
+        <BalanceInfo balance="$770.00" />
+        <RewardsInfo earnedPoints="5674 pts" />
+      </div>
+      );
     }
 }
 

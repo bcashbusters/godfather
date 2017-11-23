@@ -26,37 +26,39 @@ const styles = theme => ({
   },
 });
 
-function BalanceInfo(props) {
+function RewardsInfo(props) {
   const { classes } = props;
-  const { balance } = props;
+  const { earnedPoints, redeemedPoints } = props;
 
   return (
     <div>
       <Card className={classes.card}>
+
         <CardContent>
           <Typography type="body1" component="h2" >
-            Account
+            Rewards
           </Typography>
           <br/>
           <br/>
 
+          <Typography type="body1" className={classes.title}>
+            Balance Points till date
+          </Typography>
           <Typography type="headline" component="h2">
-            {balance}
+            {earnedPoints}
           </Typography>
-          <Typography type="body1" className={classes.pos}>
-            liabilites
-          </Typography>
-        
+
         </CardContent>
         <Divider />
         <CardActions>
-          <Button dense>view statement</Button>
+          <Button dense>view activities</Button>
         </CardActions>
       </Card>
     </div>
   );
 }
-BalanceInfo.propTypes = {
-  balance: PropTypes.object.isRequired,
+RewardsInfo.propTypes = {
+  earnedPoints: PropTypes.object.isRequired,
+  redeemedPoints: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(BalanceInfo);
+export default withStyles(styles)(RewardsInfo);

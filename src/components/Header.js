@@ -63,26 +63,39 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-        <ListItem button component='a' href='asum'>
-            <ListItemText primary="Home" />
-          </ListItem>
+
+          <Link to="asum" style={{ textDecoration: 'none' }}>
+            <ListItem button >
+                <ListItemText primary="Home" />
+              </ListItem>
+          </Link>
         <Divider />
-          <ListItem button>
-            <ListItemText primary="Statements" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Profile" />
-          </ListItem>
+          <Link to="asum" style={{ textDecoration: 'none' }}>
+            <ListItem button>
+              <ListItemText primary="Statements" />
+            </ListItem>
+          </Link>
+          <Link to="asum" style={{ textDecoration: 'none' }}>
+            <ListItem button>
+              <ListItemText primary="Profile" />
+            </ListItem>
+          </Link>
         <Divider />
-          <ListItem button component="a" href="#simple-list">
-            <ListItemText primary="Rewards" />
-          </ListItem>
-            <ListItem button component="a" href="gameInfo">
+          <Link to="asum" style={{ textDecoration: 'none' }}>
+            <ListItem button>
+              <ListItemText primary="Rewards" />
+            </ListItem>
+          </Link>
+          <Link to="gameInfo" style={{ textDecoration: 'none' }}>
+            <ListItem button >
               <ListItemText primary="Score Games" />
             </ListItem>
-          <ListItem button component="a" href="leaderboard">
+          </Link>
+          <Link to="leaderboard" style={{ textDecoration: 'none' }}>
+          <ListItem button >
             <ListItemText primary="Leader Board" />
           </ListItem>
+          </Link>
           <Divider />
         </List>
       </div>

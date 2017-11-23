@@ -34,9 +34,9 @@ class App extends Component {
       <Provider store={store}>
       <div className="App">
         <MuiThemeProvider theme={muiTheme}>
-          <Header />
           <BrowserRouter>
             <div>
+              <Header />
               <Route path='/home' component={Home} />
               <Route path='/asum' component={AccountSummary} />
               <Route path='/offers' component={MerchantOffers} />
