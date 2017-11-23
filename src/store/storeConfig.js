@@ -8,7 +8,7 @@ export default function configureStore() {
   const middlewares = [
     thunkMiddleware,
   ];
-  const user = 'chris';
+  const user = 'yogesh';
   const initialState = {
     gameInfo: GameInfoData[user],
     userInfo: UsersInfo[user]

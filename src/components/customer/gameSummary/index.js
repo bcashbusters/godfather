@@ -10,6 +10,7 @@ import { LinearProgress } from 'material-ui/Progress';
 import CardMembership from 'material-ui-icons/CardMembership';
 import Shop from 'material-ui-icons/Shop';
 import TrackChanges from 'material-ui-icons/TrackChanges';
+import Grid from 'material-ui/Grid';
 
 import { Link } from 'react-router-dom';
 
@@ -39,6 +40,8 @@ function GameInfo(props) {
     };
 
     const gameData = props.gameData;
+    const scoreProgress = (gameData.score.current/gameData.score.total)*100;
+    const rankProgress = 100 - (gameData.rank.current/gameData.rank.participants)*100;
 
     if(!gameData) {
       return(<CircularProgress size={50} />);
@@ -58,31 +61,40 @@ function GameInfo(props) {
                 <Divider />
                 <div style={progressContainerStyle}>
                     <Typography type="subheading" gutterBottom>Score</Typography>
-                    <LinearProgress mode="buffer" value={70} />
+                    <LinearProgress mode="buffer" value={scoreProgress} />
                     <Typography type="subheading" gutterBottom>
                       {gameData.score.current}<span style={{color: 'red'}}> /{gameData.score.total}</span>
                     </Typography>
                     <br />
                     <Typography type="subheading" gutterBottom>Rank</Typography>
-                    <LinearProgress color="accent" mode="buffer" value={80} />
+                    <LinearProgress color="accent" mode="buffer" value={rankProgress} />
                     <br />
                     <Typography type="subheading" gutterBottom>
                       {gameData.rank.current}<span style={{color: 'red'}}> / {gameData.rank.participants}</span>
                     </Typography>
                 </div>
                 <Divider />
-                <div>
-                    <BottomNavigation>
+                <div style={{paddingTop: '10px', marginTop: '20px'}}>
+                  <Grid container>
+                    <Grid item xs={4}>
                     <Link to="tasks" style={{ textDecoration: 'none' }}>
-                          <BottomNavigationButton label="Your Badges" icon={<CardMembership />} />
+                          <CardMembership  color='#ff4081' style={{width: '36px', height: '36px'}}/>
+                          <Typography type="subheading" gutterBottom>Badges</Typography>
                     </Link>
+                    </Grid>
+                    <Grid item xs={4}>
                       <Link to="tasks" style={{ textDecoration: 'none' }}>
-                        <BottomNavigationButton label="Play" icon={<Shop />}/>
+                        <Shop color='#ff4081' style={{width: '36px', height: '36px'}}/>
+                        <Typography type="subheading" gutterBottom>Score more</Typography>
                       </Link>
+                    </Grid>
+                    <Grid item xs={4}>
                       <Link to="leaderboard" style={{ textDecoration: 'none' }}>
-                        <BottomNavigationButton label="Leader board" icon={<TrackChanges />}/>
+                        <TrackChanges color='#ff4081' style={{width: '36px', height: '36px'}} />
+                        <Typography type="subheading" gutterBottom>Standings</Typography>
                       </Link>
-                    </BottomNavigation>
+                    </Grid>
+                  </Grid>
                 </div>
                 </CardContent>
             </Card>

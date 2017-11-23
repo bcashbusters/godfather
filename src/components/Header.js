@@ -86,7 +86,7 @@ class Header extends Component {
               <ListItemText primary="Rewards" />
             </ListItem>
           </Link>
-          <Link to="gameInfo" style={{ textDecoration: 'none' }}>
+          <Link to="gameHome" style={{ textDecoration: 'none' }}>
             <ListItem button >
               <ListItemText primary="Score Games" />
             </ListItem>

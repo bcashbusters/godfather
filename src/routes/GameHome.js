@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import GameInfo from '../components/customer/gameInfo/index';
+import GameInfo from '../components/customer/gameSummary/index';
+import Typography from 'material-ui/Typography';
 import { connect } from 'react-redux';
 
  class GameComponent extends Component {
     render() {
-      return (<GameInfo gameData={this.props.gameInfo}/>);
+      return (
+        <div style={{marginTop: '20px'}}>
+          <Typography type="title" gutterBottom>Welcome {this.props.gameInfo.user.avatar.name}</Typography>
+          <GameInfo gameData={this.props.gameInfo}/>
+        </div>);
     }
 }
 

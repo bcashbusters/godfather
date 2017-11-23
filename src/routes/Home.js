@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GameInfo from '../components/customer/gameInfo';
+import GameInfo from '../components/customer/gameSummary';
 
 class Home extends Component {
     render() {

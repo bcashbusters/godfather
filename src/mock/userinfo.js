@@ -1,16 +1,16 @@
 import Avatars from './avatar';
 
 const UsersInfo = {
-  john: {
-    name: 'John',
+  yogesh: {
+    name: 'Yogesh',
     avatar: Avatars.geeky,
     cardBalance: '$70',
     earnedRewardsPoints: '5476 pts'
   },
-  chris: {
-    name: 'Chris',
+  hemant: {
+    name: 'Hemant',
     avatar: Avatars.robber,
-    cardBalance: '$30',
+    cardBalance: '-$30',
     earnedRewardsPoints: '2476 pts'
   }
 }
