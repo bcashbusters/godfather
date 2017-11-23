@@ -6,12 +6,10 @@ import Toolbar from 'material-ui/Toolbar';
 
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
-import InboxIcon from 'material-ui-icons/Inbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
 import { Link } from 'react-router-dom';
 
 

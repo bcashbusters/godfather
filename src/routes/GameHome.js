@@ -13,17 +13,4 @@ import { connect } from 'react-redux';
     }
 }
 
-
-const mapStateToProps = (state) => {
-  return {
-    gameInfo: state.gameInfo ? state.gameInfo:{},
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(GameComponent);
+export default connect(state => state)(GameComponent);

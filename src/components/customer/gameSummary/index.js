@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import { CircularProgress } from 'material-ui/Progress';
-import BottomNavigation , { BottomNavigationButton }from 'material-ui/BottomNavigation';
 import { LinearProgress } from 'material-ui/Progress';
 import CardMembership from 'material-ui-icons/CardMembership';
 import Shop from 'material-ui-icons/Shop';

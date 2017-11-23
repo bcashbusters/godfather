@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import GameInfo from '../components/customer/gameSummary';
+import Login from '../components/login';
 
 class Home extends Component {
     render() {
-        return (<GameInfo
-
-
-        />);
+        return (<Login />);
     }
 }
 

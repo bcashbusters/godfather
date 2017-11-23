@@ -3,7 +3,6 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
-import Button from 'material-ui/Button';
 import ShoppingBasket from 'material-ui-icons/ShoppingBasket';
 import SettingsInputSvideo from 'material-ui-icons/SettingsInputSvideo';
 import CameraEnhance from 'material-ui-icons/CameraEnhance';

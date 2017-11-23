@@ -34,6 +34,8 @@ export default class GameCam extends Component {
           ref={(img) => {
             this.img = img;
           }}
+
+          alt="Your pic"
         />
       </div>
     );
