@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 import Avatar from 'material-ui/Avatar';
 import Button from 'material-ui/Button';
 import Ranking from '../components/dashbaord/rankings'
-import PropTypes from 'prop-types';
+
 
 
 
@@ -64,11 +64,13 @@ class LeaderBoard extends Component {
       data : {
         friends: [
           {userName: 'Joe', highScore: 152},
-          {userName: 'Jenny', highScore: 120}
+          {userName: 'Jenny', highScore: 120},
+
         ],
         local: [
           {userName: 'Anna', highScore: 152},
-          {userName: 'Channa', highScore: 120}
+          {userName: 'Channa', highScore: 120},
+          {userName: 'James', highScore: 90}
         ],
         global: [
           {userName: 'BTrux', highScore: 152},
@@ -85,9 +87,23 @@ class LeaderBoard extends Component {
 
   }
 
+
+  newFriendsData(){
+    return [
+      {userName: 'Jenny', highScore: 120},
+      {userName: 'Joe', highScore: 152},
+    ]
+  }
+
   updateState(data) {
     let newState = JSON.parse(JSON.stringify(this.state));
     newState.actData = this.state.data[data];
+    this.setState(newState);
+  }
+
+  animateRankChange(){
+    let newState = JSON.parse(JSON.stringify(this.state));
+    newState.actData = this.newFriendsData();
     this.setState(newState);
   }
 
@@ -100,7 +116,7 @@ class LeaderBoard extends Component {
             <Paper className={this.classes.rootPaper} elevation={1}>
               <Grid container>
                 <Grid item xs={12}>
-                  <Typography type="Title" component="h2" >
+                  <Typography type="title" component="h2" >
                     LeaderBoard
                   </Typography>
                 </Grid>
@@ -154,6 +170,3 @@ class LeaderBoard extends Component {
 
 
 export default withStyles(styles)(LeaderBoard);
-LeaderBoard.propTypes = {
-  data: PropTypes.object.isRequired,
-};
