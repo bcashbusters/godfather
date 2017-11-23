@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 import Avatar from 'material-ui/Avatar';
 import Button from 'material-ui/Button';
 import Ranking from '../components/dashbaord/rankings'
-
+import './leaderboard.css';
 
 
 
@@ -65,22 +65,47 @@ class LeaderBoard extends Component {
         friends: [
           {userName: 'Joe', highScore: 152},
           {userName: 'Jenny', highScore: 120},
+          {userName: 'Anthony', highScore: 119},
+          {userName: 'Gerrard', highScore: 109},
+          {userName: 'Steve', highScore: 100},
+          {userName: 'Serge', highScore: 95},
 
         ],
         local: [
-          {userName: 'Anna', highScore: 152},
-          {userName: 'Channa', highScore: 120},
-          {userName: 'James', highScore: 90}
+          {userName: 'Anna', highScore: 190},
+          {userName: 'Subin', highScore: 190},
+          {userName: 'James', highScore: 179},
+          {userName: 'Bond', highScore: 89},
+          {userName: 'Chang', highScore: 65},
+          {userName: 'Alan', highScore: 40},
+          {userName: 'Smith', highScore: 0}
         ],
         global: [
-          {userName: 'BTrux', highScore: 152},
-          {userName: 'Bane', highScore: 120}
+          {userName: 'BTrux', highScore: 1750},
+          {userName: 'Bane', highScore: 1600},
+          {userName: 'Kennethan', highScore: 1400},
+          {userName: 'Jimmy', highScore: 1300},
+          {userName: 'Tom', highScore: 1200},
+          {userName: 'Aops', highScore: 1100},
         ]
       },
       actData : [
-        {userName: 'Joe', highScore: 152},
-        {userName: 'Jenny', highScore: 120}
-      ]
+      {userName: 'Joe', highScore: 152},
+      {userName: 'Jenny', highScore: 120},
+      {userName: 'Anthony', highScore: 119},
+      {userName: 'Gerrard', highScore: 109},
+      {userName: 'Steve', highScore: 100},
+      {userName: 'Serge', highScore: 95},
+
+    ],
+
+      selfScore : 170,
+      selfRank : "1st",
+      ranks : {
+        friends : "1st",
+        local : "4th",
+        global: "456th"
+      }
 
     };
     this.classes = props.classes;
@@ -102,9 +127,15 @@ class LeaderBoard extends Component {
   }
 
   animateRankChange(){
+    let memberOfListToBePromoted = document.querySelectorAll('.anim_list')[1].outerHTML;
+    let div = document.createElement('div');
+    div.innerHTML = memberOfListToBePromoted;
+
+    document.querySelectorAll('.LeaderBoard')[0].innerHTML += ('<div class="mow">' + div.innerHTML + '</div>');
+    document.querySelector('.mow').childNodes[0].classList.remove("anim_list");
     let newState = JSON.parse(JSON.stringify(this.state));
     newState.actData = this.newFriendsData();
-    this.setState(newState);
+    //this.setState(newState);
   }
 
 
@@ -126,7 +157,9 @@ class LeaderBoard extends Component {
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                  <Avatar src="images/temp.jpeg" className={this.classes.bigAvatar}>
+                  <Avatar src="images/temp.jpeg" className={this.classes.bigAvatar} onClick={() => {
+                    this.animateRankChange();
+                  }}>
 
                   </Avatar>
                 </Grid>

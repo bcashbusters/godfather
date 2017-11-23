@@ -1,0 +1,18 @@
+.mow {
+
+    animation: mow 2s forwards;
+}
+
+@keyframes mow {
+    0% {
+        transform: translateZ(250px) translateY(30px) scale(4);
+    }
+    85% {transform: translateZ(-1px) scale(0.98)}
+    99% {
+        opacity : 1;
+        transform: translateZ(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+    }
+}

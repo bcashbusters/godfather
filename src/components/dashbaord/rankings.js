@@ -29,7 +29,7 @@ function rankings(props) {
         let elements = [];
         data.map((dt,index) => {
            elements.push(
-               <ListItem button divider className="anim_list" key={index} style={getAnimationdelay(index)}>
+               <ListItem button divider className="anim_list" key={dt.userName} style={getAnimationdelay(index)}>
                    <div className={classes.lb_rank}>{index+1}</div>
 
                    <ListItemAvatar>
