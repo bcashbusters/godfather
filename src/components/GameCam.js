@@ -59,8 +59,24 @@ export default class GameCam extends Component {
 
     this.camera.capture()
       .then(blob => {
-        this.setState({ uploading: true })
+        console.log("Blob:");
+        let reader = new window.FileReader();
+        reader.readAsDataURL(blob);
+        let baseData;
+        reader.onloadend = function() {
+          baseData = reader.result;
+          console.log(baseData );
+          fetch("https://us-central1-god-father.cloudfunctions.net/api2/", {
+            method: 'POST',
+            body: {
+              data: baseData.slice(23)
+            }
+          }).then((data) => console.log(data));
+        };
+        this.setState({ uploading: true });
+
         this.img.src = URL.createObjectURL(blob);
+        console.log(URL.createObjectURL(blob));
         this.img.onload = () => { URL.revokeObjectURL(this.src); }
 
         var uriBase = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAKeWFptGfGF0QWHs1oasHrq5vRYog1LOc";
