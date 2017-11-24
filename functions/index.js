@@ -1,5 +1,5 @@
 const functions = require("firebase-functions");
-const cors = require("cors")({origin:true});
+const cors = require("cors");
 const request = require("request-promise");
 const express = require("express");
 const uriBase = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAKeWFptGfGF0QWHs1oasHrq5vRYog1LOc";
