@@ -124,6 +124,7 @@ class LeaderBoard extends Component {
   updateState(data) {
     let newState = JSON.parse(JSON.stringify(this.state));
     newState.selfRank = this.state.ranks[data].text;
+    newState.actData = this.state.data[data];
     this.setState(newState);
   }
 
