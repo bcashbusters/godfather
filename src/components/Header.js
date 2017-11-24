@@ -98,7 +98,7 @@ class Header extends Component {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          {user.displayName? Authenticated: <span />}
+          {user.name? Authenticated: <span />}
         </List>
       </div>
     );
@@ -114,7 +114,7 @@ class Header extends Component {
             <div className={classes.flex}>
               <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px' />
             </div>
-            {(this.props.user.displayName)? <Button color="contrast" onClick={this.logout}>Logout</Button>: <span />}
+            {(this.props.user.name)? <Button color="contrast" onClick={this.logout}>Logout</Button>: <span />}
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.drawer.open} onRequestClose={this.toggleDrawer()}>

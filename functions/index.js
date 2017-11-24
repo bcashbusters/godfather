@@ -3,13 +3,21 @@ const cors = require("cors");
 const request = require("request-promise");
 const express = require("express");
 const uriBase = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAKeWFptGfGF0QWHs1oasHrq5vRYog1LOc";
+const admin = require("firebase-admin");
+admin.initializeApp(functions.config().firebase);
+
+
 /* Express with CORS */
 const app2 = express();
+
+
 app2.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+
 //app2.use(cors({ origin: true }));
 app2.get('/getOffers/:customerId', (req, res) => {
   const offerData = {
@@ -27,6 +35,7 @@ app2.get('/getOffers/:customerId', (req, res) => {
     res.send('Please send a valid user');
   }
 });
+
 app2.post("*", (req, response) => {
 
   request({
@@ -58,7 +67,7 @@ const api2 = functions.https.onRequest(app2)
 
 const onUserAdded = functions.auth.user().onCreate(event => {
   const user = event.data;
-  admin.database().ref("users").child(user.uid).set({
+  return admin.database().ref("users").child(user.uid).set({
     name: user.displayName,
     avatarId: 'geeky',
     cardBalance: 0,

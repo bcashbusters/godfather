@@ -46,15 +46,12 @@ class App extends Component {
       if (user) {
         firebase.database().ref("users").child(user.uid).once("value", (snap) => {
           const userInfo = snap.val();
-          
-
-          firebase.database().ref("avatars").child(userInfo.avatarId).once("value", (snap) => snap.val())
-            .then((avatar) => Object.assign({}, userInfo, avatar))
-            .then(userI => { 
-              this.props.dispatch(loginUser(userI))
-            });
-
-            this.props.dispatch(loginUser(user))
+          console.log(userInfo)
+          firebase.database().ref("avatars").child(userInfo.avatarId).once("value", (snap) => {
+            const avatar = snap.val();
+            console.log(Object.assign({}, userInfo, { avatar }));
+            this.props.dispatch(loginUser(Object.assign({}, userInfo, { avatar })))
+          });
         })
       }
       else
@@ -71,7 +68,7 @@ class App extends Component {
           <BrowserRouter>
             <div>
               <Header user={userInfo} />
-              {userInfo.displayName ? (<AunthenticatedRoutes />) : <Route path='/' exact component={Home} />}
+              {userInfo.name ? (<AunthenticatedRoutes />) : <Route path='/' exact component={Home} />}
             </div>
           </BrowserRouter>
         </MuiThemeProvider>
