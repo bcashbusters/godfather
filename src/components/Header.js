@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
+import Button from 'material-ui/Button';
 
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
-import InboxIcon from 'material-ui-icons/Inbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
 import { Link } from 'react-router-dom';
 
 
@@ -29,7 +28,7 @@ const styles = theme => ({
   list: {
     width: '300px',
     background: theme.palette.background.paper
-  },
+  }
 });
 
 class Header extends Component {
@@ -40,7 +39,7 @@ class Header extends Component {
   }
 
   toggleDrawer() {
-    return (e) =>
+    return (e) => 
       (this.state.drawer.open) ?
         this.setState({ drawer: { open: false } }) :
         this.setState({ drawer: { open: true } });
@@ -48,13 +47,6 @@ class Header extends Component {
 
   render() {
     const { classes } = this.props;
-    const logoContainerStyle = {
-      position: 'absolute',
-      width: '100%',
-      textAlign: 'center',
-      top: '10px',
-      left: '0'
-    };
     const buttonStyle = {
       position: 'relative',
       zIndex: 1
@@ -63,13 +55,12 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-
           <Link to="asum" style={{ textDecoration: 'none' }}>
             <ListItem button >
-                <ListItemText primary="Home" />
-              </ListItem>
+              <ListItemText primary="Home" />
+            </ListItem>
           </Link>
-        <Divider />
+          <Divider />
           <Link to="asum" style={{ textDecoration: 'none' }}>
             <ListItem button>
               <ListItemText primary="Statements" />
@@ -80,7 +71,7 @@ class Header extends Component {
               <ListItemText primary="Profile" />
             </ListItem>
           </Link>
-        <Divider />
+          <Divider />
           <Link to="asum" style={{ textDecoration: 'none' }}>
             <ListItem button>
               <ListItemText primary="Rewards" />
@@ -92,9 +83,9 @@ class Header extends Component {
             </ListItem>
           </Link>
           <Link to="leaderboard" style={{ textDecoration: 'none' }}>
-          <ListItem button >
-            <ListItemText primary="Leader Board" />
-          </ListItem>
+            <ListItem button >
+              <ListItemText primary="Leader Board" />
+            </ListItem>
           </Link>
           <Divider />
         </List>
@@ -108,10 +99,11 @@ class Header extends Component {
             <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" style={buttonStyle}>
               <MenuIcon onClick={this.toggleDrawer()} />
             </IconButton>
-            
-            <div style={logoContainerStyle}>
-            <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px'/>
-          </div>
+
+            <div className={classes.flex}>
+              <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px' />
+            </div>
+            <Button color="contrast">Logout</Button>
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.drawer.open} onRequestClose={this.toggleDrawer()}>

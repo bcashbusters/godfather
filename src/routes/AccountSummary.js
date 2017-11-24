@@ -27,17 +27,4 @@ class AccountSummary extends Component {
     }
 }
 
-
-const mapStateToProps = (state) => {
-  return {
-    userInfo: state.userInfo ? state.userInfo:{},
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(AccountSummary);
+export default connect(state => state)(AccountSummary);

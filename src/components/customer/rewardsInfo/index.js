@@ -28,7 +28,7 @@ const styles = theme => ({
 
 function RewardsInfo(props) {
   const { classes } = props;
-  const { earnedPoints, redeemedPoints } = props;
+  const { earnedPoints } = props;
 
   return (
     <div>
