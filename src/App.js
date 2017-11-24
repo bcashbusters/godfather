@@ -40,22 +40,26 @@ const AunthenticatedRoutes = (props) =>
 
 class App extends Component {
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(({ displayName }) => {
-      this.props.dispatch(loginUser({ displayName }))});
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user)
+        this.props.dispatch(loginUser(user));
+      else
+        this.props.dispatch(loginUser({}))
+    });
   }
 
   render() {
-    const { user } = this.props;
+    const { userInfo } = this.props;
+    console.log(this.props)
     return (
       <div className="App">
         <MuiThemeProvider theme={muiTheme}>
           <BrowserRouter>
             <div>
-              <Header user={user}/>
-              <Switch>
-                <AunthenticatedRoutes />
-                <Route path='/home' exact component={Home} />
-              </Switch>
+              <Header user={userInfo} />
+              {userInfo.displayName ? (<AunthenticatedRoutes />) : (<div />)}
+              <Route path='/' exact component={Home} />
             </div>
           </BrowserRouter>
         </MuiThemeProvider>

@@ -13,6 +13,8 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import { Link } from 'react-router-dom';
 
+import firebase from 'firebase';
+
 
 const styles = theme => ({
   root: {
@@ -39,18 +41,54 @@ class Header extends Component {
   }
 
   toggleDrawer() {
-    return (e) => 
+    return (e) =>
       (this.state.drawer.open) ?
         this.setState({ drawer: { open: false } }) :
         this.setState({ drawer: { open: true } });
   }
 
+  logout = (e) => {
+    firebase.auth().signOut();
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, user } = this.props;
     const buttonStyle = {
       position: 'relative',
       zIndex: 1
     }
+
+    const Authenticated =
+      <div>
+        <Divider />
+        <Link to="asum" style={{ textDecoration: 'none' }}>
+          <ListItem button>
+            <ListItemText primary="Statements" />
+          </ListItem>
+        </Link>
+        <Link to="asum" style={{ textDecoration: 'none' }}>
+          <ListItem button>
+            <ListItemText primary="Profile" />
+          </ListItem>
+        </Link>
+        <Divider />
+        <Link to="asum" style={{ textDecoration: 'none' }}>
+          <ListItem button>
+            <ListItemText primary="Rewards" />
+          </ListItem>
+        </Link>
+        <Link to="gameHome" style={{ textDecoration: 'none' }}>
+          <ListItem button >
+            <ListItemText primary="Score Games" />
+          </ListItem>
+        </Link>
+        <Link to="leaderboard" style={{ textDecoration: 'none' }}>
+          <ListItem button >
+            <ListItemText primary="Leader Board" />
+          </ListItem>
+        </Link>
+        <Divider />
+      </div>;
 
     const sideList = (
       <div className={classes.list}>
@@ -60,34 +98,7 @@ class Header extends Component {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Divider />
-          <Link to="asum" style={{ textDecoration: 'none' }}>
-            <ListItem button>
-              <ListItemText primary="Statements" />
-            </ListItem>
-          </Link>
-          <Link to="asum" style={{ textDecoration: 'none' }}>
-            <ListItem button>
-              <ListItemText primary="Profile" />
-            </ListItem>
-          </Link>
-          <Divider />
-          <Link to="asum" style={{ textDecoration: 'none' }}>
-            <ListItem button>
-              <ListItemText primary="Rewards" />
-            </ListItem>
-          </Link>
-          <Link to="gameHome" style={{ textDecoration: 'none' }}>
-            <ListItem button >
-              <ListItemText primary="Score Games" />
-            </ListItem>
-          </Link>
-          <Link to="leaderboard" style={{ textDecoration: 'none' }}>
-            <ListItem button >
-              <ListItemText primary="Leader Board" />
-            </ListItem>
-          </Link>
-          <Divider />
+          {user.displayName? Authenticated: <span />}
         </List>
       </div>
     );
@@ -103,7 +114,7 @@ class Header extends Component {
             <div className={classes.flex}>
               <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px' />
             </div>
-            <Button color="contrast">Logout</Button>
+            {(this.props.user.displayName)? <Button color="contrast" onClick={this.logout}>Logout</Button>: <span />}
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.drawer.open} onRequestClose={this.toggleDrawer()}>

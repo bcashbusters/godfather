@@ -1,8 +1,6 @@
 import React from 'react';
 import firebaseui from 'firebaseui';
-
 import firebase from '../firebase';
-
 import 'firebaseui/dist/firebaseui.css';
 
 class LoginForm extends React.Component {
