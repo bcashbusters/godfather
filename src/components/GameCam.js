@@ -54,8 +54,8 @@ export default class GameCam extends Component {
 
   takePicture() {
 
-    var storage = firebase.storage();
-    var storageRef = storage.ref().child('images').child("hemant");
+
+
 
     this.camera.capture()
       .then(blob => {
@@ -65,7 +65,7 @@ export default class GameCam extends Component {
         let baseData;
         reader.onloadend = function() {
           baseData = reader.result;
-          console.log(baseData );
+          console.log(baseData.slice(23));
           fetch("https://us-central1-god-father.cloudfunctions.net/api2/", {
             method: 'POST',
             body: {
@@ -79,32 +79,6 @@ export default class GameCam extends Component {
         console.log(URL.createObjectURL(blob));
         this.img.onload = () => { URL.revokeObjectURL(this.src); }
 
-        var uriBase = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAKeWFptGfGF0QWHs1oasHrq5vRYog1LOc";
-
-        storageRef.put(blob).then(function (snapshot) {
-          const imageUrl = snapshot.downloadURL;
-          console.log(imageUrl);
-
-          fetch(uriBase, {
-            method: 'POST',
-            body: JSON.stringify({
-              requests: [
-                {
-                  image: {
-                    source: {
-                      imageUri: imageUrl
-                    }
-                  },
-                  "features": [
-                    {
-                      "type": "TEXT_DETECTION"
-                    }
-                  ]
-                }
-              ]
-            })
-          }).then((data) => console.log(data));
-        })
       })
 
   }

@@ -5,7 +5,7 @@
   "dependencies": {
     "dialog-polyfill": "^0.4.9",
     "firebase": "^4.6.2",
-    "firebase-admin": "^5.5.1",˚
+    "firebase-admin": "^5.5.1",
     "firebaseui": "^2.4.1",
     "material-ui": "^1.0.0-beta.21",
     "material-ui-icons": "^1.0.0-beta.17",

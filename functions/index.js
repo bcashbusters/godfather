@@ -27,7 +27,6 @@ app2.post("*", (req, response) => {
   }).then((data) => {
     console.log(JSON.stringify(data));
     response.send(data);
-    return admin.database().ref(`analysis/${filePath}`).set(data);
   });
 
 
