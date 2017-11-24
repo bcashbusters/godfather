@@ -1,4 +1,13 @@
-const tileData = [
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./god-father-firebase-adminsdk-hi0zq-6e0edfcf3f.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://god-father.firebaseio.com"
+});
+
+const offerData = [
   {
     img: 'images/starbucks.jpg',
     title: '10% off',
@@ -47,9 +56,9 @@ const tileData = [
     title: '12% off',
     author: 'Tesco',
   },
-
 ]
 
+const ref = admin.database().ref("offers")
 
-
-export default tileData;
+offerData.map(offer => 
+  ref.push(offer));

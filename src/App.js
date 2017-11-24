@@ -46,12 +46,13 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
       <div className="App">
         <MuiThemeProvider theme={muiTheme}>
           <BrowserRouter>
             <div>
-              <Header />
+              <Header user={user}/>
               <Switch>
                 <AunthenticatedRoutes />
                 <Route path='/home' exact component={Home} />
