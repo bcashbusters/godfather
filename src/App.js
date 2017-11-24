@@ -44,7 +44,7 @@ class App extends Component {
                 <Route path='/gameCam' component={GameCam} />
                 <Route path='/tasks' component={Tasks} />
                 <Route path='/leaderboard' component={LeaderBoard} />
-                <Route path='*' exact component={Home} />
+                <Route path='*' component={Home} />
               </Switch>
             </div>
           </BrowserRouter>
