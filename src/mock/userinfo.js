@@ -5,13 +5,15 @@ const UsersInfo = {
     name: 'Yogesh',
     avatar: Avatars.geeky,
     cardBalance: '$70',
-    earnedRewardsPoints: '5476 pts'
+    earnedRewardsPoints: '5476 pts',
+    level: 1
   },
   hemant: {
     name: 'Hemant',
     avatar: Avatars.robber,
     cardBalance: '-$30',
-    earnedRewardsPoints: '2476 pts'
+    earnedRewardsPoints: '2476 pts',
+    level: 2
   }
 }
 

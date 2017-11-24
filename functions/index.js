@@ -11,6 +11,22 @@ app2.use(function(req, res, next) {
   next();
 });
 //app2.use(cors({ origin: true }));
+app2.get('/getOffers/:customerId', (req, res)=>{
+  const offerData = {
+    'swapnilugare@gmail.com': {
+      offers: [
+        'Starbucks',
+        'Amazon',
+        'Beats',
+      ]
+    }
+  };
+  if(offerData[req.params.customerId] != undefined){
+    res.json(offerData[req.params.customerId].offers);
+  }else {
+    res.send('Please send a valid user');
+  }
+});
 app2.post("*", (req, response) => {
 
   request({
