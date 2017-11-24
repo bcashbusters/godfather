@@ -31,13 +31,13 @@ function Tasks(props) {
         <div className={classes.root}>
           <div style={titleStyle}>
             <Typography
-                type="headline" gutterBottom>Lets Play</Typography>
+                type="headline" gutterBottom>Rewards Ville</Typography>
           </div>
           <List>
             <Divider />
             <Link to="gameCam" style={{ textDecoration: 'none' }}>
               <ListItem button>
-                <Avatar>
+                <Avatar style={{backgroundColor: "#2196f3"}}>
                   <CameraEnhance />
                 </Avatar>
                 <ListItemText primary="Use Camera to Search Offers " secondary="Earn 20pts" />
@@ -45,16 +45,18 @@ function Tasks(props) {
             </Link>
             <Divider />
             <Divider />
-            <ListItem button>
-              <Avatar>
-                <SettingsInputSvideo />
-              </Avatar>
-              <ListItemText primary="Play a game"  secondary="Earn 15pts" />
-            </ListItem>
+            <Link to="tasklist" style={{ textDecoration: 'none' }}>
+              <ListItem button>
+                <Avatar style={{backgroundColor: "#2196f3"}}>
+                  <SettingsInputSvideo />
+                </Avatar>
+                <ListItemText primary="Rewards hunt"  secondary="Earn 15pts" />
+              </ListItem>
+            </Link>
             <Divider />
             <Link to="offers" style={{ textDecoration: 'none' }}>
               <ListItem button >
-                <Avatar>
+                <Avatar style={{backgroundColor: "#2196f3"}}>
                   <ShoppingBasket />
                 </Avatar>
                 <ListItemText primary="Shop with our Merchant offers"  secondary="Earn 10pts" />
@@ -63,12 +65,13 @@ function Tasks(props) {
             <Divider />
             <Link to="offers" style={{ textDecoration: 'none' }}>
               <ListItem button >
-                <Avatar>
+                <Avatar style={{backgroundColor: "#2196f3"}}>
                   <AccountCircle />
                 </Avatar>
                 <ListItemText primary="Enroll your friends" secondary="Earn 10pts" />
               </ListItem>
             </Link>
+            <Divider />
           </List>
         </div>
     );

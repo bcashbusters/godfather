@@ -10,8 +10,7 @@ export function configureStore() {
   ];
   const user = 'yogesh';
   const initialState = {
-    gameInfo: GameInfoData[user],
-    userInfo: UsersInfo[user]
+    gameInfo: GameInfoData[user]
   };
   return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
 }

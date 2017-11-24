@@ -7,6 +7,7 @@ import AccountSummary from './routes/AccountSummary';
 import MerchantOffers from './components/customer/merchantOffers';
 import GameHome from './routes/GameHome';
 import Tasks from './components/customer/tasks';
+import TaskList from './components/customer/taskList';
 import GameCam from './components/GameCam';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -17,7 +18,7 @@ import firebase from './firebase';
 
 import { Provider, connect } from 'react-redux';
 import store from './store/storeConfig';
-import { loginUser } from './actions/index';
+import { loginUser, setUp } from './actions/index';
 import { database } from 'firebase';
 
 const muiTheme = createMuiTheme({
@@ -37,11 +38,13 @@ const AunthenticatedRoutes = (props) =>
     <Route path='/gameCam' component={GameCam} />
     <Route path='/tasks' component={Tasks} />
     <Route path='/leaderboard' component={LeaderBoard} />
+    <Route path='/tasklist' component={TaskList} />
     <Route path='*' component={AccountSummary} />
   </Switch>;
 
 class App extends Component {
   componentDidMount() {
+    setUp();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         firebase.database().ref("users").child(user.uid).once("value", (snap) => {
@@ -61,7 +64,7 @@ class App extends Component {
 
   render() {
     const { userInfo } = this.props;
-    console.log(this.props)
+   
     return (
       <div className="App">
         <MuiThemeProvider theme={muiTheme}>

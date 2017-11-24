@@ -21,3 +21,11 @@ export const openOffers = () => {
 export const closeOffers = () => {
   offersRef.off();
 }
+
+export const setUp = () => {
+  firebase.database().ref("levels").on("value", snap => {
+    store.dispatch({ type:'LEVELS_CHANGED', levels: snap.val()})
+  });
+  firebase.database().ref("merchants").on("value", snap => store.dispatch({ type:'MERCHANTS_CHANGED', merchants: snap.val()}));
+
+};

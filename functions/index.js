@@ -94,7 +94,16 @@ const onUserAdded = functions.auth.user().onCreate(event => {
     avatarId: 'geeky',
     cardBalance: 0,
     earnedRewardsPoints: 0,
-    level: 1
+    level: {
+      id: 1,
+      task1: 'true',
+      task2: 'true',
+      task3: 'true',
+      task4: 'true',
+      task4: 'true',
+      task5: 'unassigned',
+      task6: 'unassigned',
+  }
   })
 });
 
