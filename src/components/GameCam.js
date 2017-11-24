@@ -75,22 +75,32 @@ export default class GameCam extends Component {
             .then(function (response) {
               let useful = response.data.responses[0];
               let searchedTexts = useful.textAnnotations;
-              searchedTexts.map( x => {
-                console.log(x.description);
-              })
-
+              if(searchedTexts && Array.isArray(searchedTexts)) {
+                searchedTexts.map(x => {
+                  console.log(x.description);
+                })
+              }else{
+                console.log("nothing found");
+              }
             });
           let headers = {
-            'Content-Type':'application/json',
             'app_id':'dffd21fa',
             'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
           };
 
-            axios.post("https://us-central1-god-father.cloudfunctions.net/api2/",
-            {
-              data : baseData,
+          axios.post("https://api.kairos.com/recognize", {
+              image : baseData,
               gallery_name : "bcash"
-            }).then(data => console.log(data));
+            }, {
+            headers: {
+            'app_id':'dffd21fa',
+            'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
+          }}).then(data =>
+            {
+            console.log("image recognition Results :- ");
+            console.log(data);
+            data.data.images.map(c => console.log(c.transaction.subject_id))
+            }).catch(e => {console.log(e)});
 
         };
         this.setState({ uploading: true });
