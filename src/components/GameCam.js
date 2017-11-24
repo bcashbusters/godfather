@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Camera from './Camera';
+import axios from 'axios';
 import firebase from 'firebase';
 
 const style = {
@@ -59,26 +60,27 @@ export default class GameCam extends Component {
 
     this.camera.capture()
       .then(blob => {
-        console.log("Blob:");
         let reader = new window.FileReader();
         reader.readAsDataURL(blob);
         let baseData;
+        let data1 = new FormData();
+
         reader.onloadend = function() {
           baseData = reader.result;
-          console.log(baseData.slice(23));
-          fetch("https://us-central1-god-father.cloudfunctions.net/api2/", {
-            method: 'POST',
-            body: {
-              data: baseData.slice(23)
-            }
-          }).then((data) => console.log(data));
+          data1.append( "json", JSON.stringify({
+            data: baseData
+          }));
+          axios.post("https://us-central1-god-father.cloudfunctions.net/api2/", { data : baseData.slice(23)} )
+            .then(function (response) {
+              let useful = response.data.responses[0];
+              let searchedTexts = useful.textAnnotations;
+              searchedTexts.map( x => {
+                console.log(x.description);
+              })
+
+            });
         };
         this.setState({ uploading: true });
-
-        this.img.src = URL.createObjectURL(blob);
-        console.log(URL.createObjectURL(blob));
-        this.img.onload = () => { URL.revokeObjectURL(this.src); }
-
       })
 
   }
@@ -93,13 +95,6 @@ export default class GameCam extends Component {
             <div style={style.captureButton} />
           </div>
         </Camera>
-        <img
-          style={style.captureImage}
-          ref={(img) => {
-            this.img = img;
-          }}
-          alt="Camera"
-        />
       </div>
     );
   }
