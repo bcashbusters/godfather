@@ -60,6 +60,3 @@ const api2 = functions.https.onRequest(app2)
 module.exports = {
   api2
 };
-
-
-
