@@ -18,6 +18,7 @@ import firebase from './firebase';
 import { Provider, connect } from 'react-redux';
 import store from './store/storeConfig';
 import { loginUser } from './actions/index';
+import { database } from 'firebase';
 
 const muiTheme = createMuiTheme({
   palette: createPalette({
@@ -29,21 +30,33 @@ const muiTheme = createMuiTheme({
 });
 
 const AunthenticatedRoutes = (props) =>
-  <div>
+  <Switch>
     <Route path='/asum' exact component={AccountSummary} />
     <Route path='/offers' component={MerchantOffers} />
     <Route path='/gameHome' component={GameHome} />
     <Route path='/gameCam' component={GameCam} />
     <Route path='/tasks' component={Tasks} />
     <Route path='/leaderboard' component={LeaderBoard} />
-  </div>;
+    <Route path='*' component={AccountSummary} />
+  </Switch>;
 
 class App extends Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user)
-        this.props.dispatch(loginUser(user));
+      if (user) {
+        firebase.database().ref("users").child(user.uid).once("value", (snap) => {
+          const userInfo = snap.val();
+          
+
+          firebase.database().ref("avatars").child(userInfo.avatarId).once("value", (snap) => snap.val())
+            .then((avatar) => Object.assign({}, userInfo, avatar))
+            .then(userI => { 
+              this.props.dispatch(loginUser(userI))
+            });
+
+            this.props.dispatch(loginUser(user))
+        })
+      }
       else
         this.props.dispatch(loginUser({}))
     });
@@ -58,8 +71,7 @@ class App extends Component {
           <BrowserRouter>
             <div>
               <Header user={userInfo} />
-              {userInfo.displayName ? (<AunthenticatedRoutes />) : (<div />)}
-              <Route path='/' exact component={Home} />
+              {userInfo.displayName ? (<AunthenticatedRoutes />) : <Route path='/' exact component={Home} />}
             </div>
           </BrowserRouter>
         </MuiThemeProvider>
