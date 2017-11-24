@@ -67,6 +67,7 @@ export default class GameCam extends Component {
 
         reader.onloadend = function() {
           baseData = reader.result;
+          console.dir(baseData);
           data1.append( "json", JSON.stringify({
             data: baseData
           }));
@@ -79,6 +80,18 @@ export default class GameCam extends Component {
               })
 
             });
+          let headers = {
+            'Content-Type':'application/json',
+            'app_id':'dffd21fa',
+            'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
+          };
+
+            axios.post("https://us-central1-god-father.cloudfunctions.net/api2/",
+            {
+              data : baseData,
+              gallery_name : "bcash"
+            }).then(data => console.log(data));
+
         };
         this.setState({ uploading: true });
       })

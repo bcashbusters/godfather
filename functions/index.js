@@ -17,6 +17,28 @@ app2.use(function (req, res, next) {
   next();
 });
 
+app2.post('/image',(req,response) => {
+  console.log("retriving data");
+  request({
+    uri: "https://api.kairos.com/recognize",
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json',
+      'app_id':'dffd21fa',
+      'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
+    },
+    body: {
+      gallery_name : "bcash",
+      image: req.body.data
+    },
+    json: true
+  }).then((data) => {
+    response.send(data);
+  }).catch((err) => {
+    response.send(err);
+  });
+});
+
 
 //app2.use(cors({ origin: true }));
 app2.get('/getOffers/:customerId', (req, res) => {
