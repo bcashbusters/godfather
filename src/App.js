@@ -64,7 +64,7 @@ class App extends Component {
 
   render() {
     const { userInfo } = this.props;
-   
+
     return (
       <div className="App">
         <MuiThemeProvider theme={muiTheme}>
