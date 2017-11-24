@@ -11,6 +11,7 @@ import TrackChanges from 'material-ui-icons/TrackChanges';
 import Grid from 'material-ui/Grid';
 
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
     card: {
@@ -101,4 +102,4 @@ function GameInfo(props) {
 }
 
 
-export default withStyles(styles)(GameInfo);
+export default connect(state => state) (withStyles(styles)(GameInfo));

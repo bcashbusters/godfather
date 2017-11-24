@@ -16,10 +16,9 @@ import { blue, amber, red } from 'material-ui/colors';
 import firebase from './firebase';
 
 import { Provider, connect } from 'react-redux';
-import configureStore from './store/storeConfig';
+import store from './store/storeConfig';
 import { loginUser } from './actions/index';
 
-const store = configureStore();
 const muiTheme = createMuiTheme({
   palette: createPalette({
     primary: blue,

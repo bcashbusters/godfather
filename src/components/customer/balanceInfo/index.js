@@ -7,7 +7,7 @@ import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
-  card: {
+  card: { 
     minWidth: 275,
   },
   bullet: {

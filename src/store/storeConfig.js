@@ -4,7 +4,7 @@ import rootReducer from '../reducers';
 import GameInfoData from '../mock/gameinfo';
 import UsersInfo from "../mock/userinfo";
 
-export default function configureStore() {
+export function configureStore() {
   const middlewares = [
     thunkMiddleware,
   ];
@@ -15,3 +15,5 @@ export default function configureStore() {
   };
   return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)));
 }
+
+export default configureStore();

@@ -5,9 +5,9 @@ import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
 import Subheader from 'material-ui/List/ListSubheader';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/Info';
-import tileData from './merchant-data';
 import { connect } from 'react-redux';
 import { addToScore } from '../../../actions/scoreActions';
+import { openOffers, closeOffers } from '../../../actions';
 
 const styles = theme => ({
   container: {
@@ -23,30 +23,42 @@ const styles = theme => ({
   },
 });
 
-class MerchantOffers extends  React.Component{
-  render(){
+class MerchantOffers extends React.Component {
+  componentDidMount() {
+    openOffers();
+  }
+
+  componentWillUnMount() {
+    closeOffers();
+  }
+
+  render() {
+    const { offers } = this.props;
+
+    console.log(offers);
+    
+    const offerTile = (key, tile) =>
+      <GridListTile key={key} cols={tile.cols || 1}>
+        <img src={tile.img} alt={tile.title} />
+        <GridListTileBar
+          title={tile.title}
+          subtitle={<span>by: {tile.author}</span>}
+          actionIcon={
+            <IconButton onClick={() => this.props.addScore(10)
+            }>
+              <InfoIcon color="rgba(255, 255, 255, 0.54)" />
+            </IconButton>
+          }
+        />
+      </GridListTile>;
+
     return (
       <div>
-        <GridList cellHeight={180}  cols={2} >
+        <GridList cellHeight={180} cols={2} >
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
             <Subheader component="div">Merchant Offers</Subheader>
           </GridListTile>
-          {tileData.map(tile => (
-            <GridListTile key={tile.img} cols={tile.cols || 1}>
-              <img src={tile.img} alt={tile.title} />
-              <GridListTileBar
-                title={tile.title}
-                subtitle={<span>by: {tile.author}</span>}
-                actionIcon={
-                  <IconButton onClick={()=>{
-                    this.props.addScore(10)}
-                  }>
-                    <InfoIcon color="rgba(255, 255, 255, 0.54)" />
-                  </IconButton>
-                }
-              />
-            </GridListTile>
-          ))}
+          {Object.keys(offers).map(key => offerTile(key, offers[key]))}
         </GridList>
       </div>
     );
@@ -58,18 +70,13 @@ MerchantOffers.propTypes = {
   addScore: PropTypes.func.isRequired
 };
 
-
-const mapStateToProps = () => {
-  return {};
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    addScore: (value)=>{
+    addScore: (value) => {
       dispatch(addToScore(value))
     }
   };
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MerchantOffers));
+export default connect(state => state, mapDispatchToProps)(withStyles(styles)(MerchantOffers));
