@@ -26,8 +26,7 @@ class TaskList extends React.Component {
     let taskList = [];
     for(let key in tasks){
       let secondaryText = "Earn "+  tasks[key].score+"pts";
-      let taskColor = tasks[key].isCompleted == true ? "#228B22":"#2196f3" ;
-      console.log( tasks[key].isCompleted);
+      let taskColor = tasks[key].isCompleted == true ? "#228B22":"#ccc";
       taskList.push(<div>
         <Link to="gameCam" style={{textDecoration: 'none'}}>
         <ListItem button>

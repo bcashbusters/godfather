@@ -5,6 +5,7 @@ import Home from './routes/Home';
 import LeaderBoard from './routes/Leaderboard';
 import AccountSummary from './routes/AccountSummary';
 import MerchantOffers from './components/customer/merchantOffers';
+import AvailOffer from './components/customer/availOffer';
 import GameHome from './routes/GameHome';
 import Tasks from './components/customer/tasks';
 import TaskList from './components/customer/taskList';
@@ -39,6 +40,7 @@ const AunthenticatedRoutes = (props) =>
     <Route path='/tasks' component={Tasks} />
     <Route path='/leaderboard' component={LeaderBoard} />
     <Route path='/tasklist' component={TaskList} />
+    <Route path='/availoffer' component={AvailOffer} />
     <Route path='*' component={AccountSummary} />
   </Switch>;
 

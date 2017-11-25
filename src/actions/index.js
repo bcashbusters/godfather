@@ -18,6 +18,14 @@ export const openOffers = () => {
   });
 }
 
+export const imageProcessed = (offer)=>{
+  return {
+    type: 'IMAGE_PROCESSED',
+    key: 'currOffer',
+    offer
+  };
+};
+
 export const closeOffers = () => {
   offersRef.off();
 }

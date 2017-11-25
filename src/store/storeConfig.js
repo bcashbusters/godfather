@@ -2,7 +2,6 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../reducers';
 import GameInfoData from '../mock/gameinfo';
-import UsersInfo from "../mock/userinfo";
 
 export function configureStore() {
   const middlewares = [

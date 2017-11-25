@@ -4,6 +4,10 @@ export const gameInfoReducer = (state = {}, action) => {
       return { ...state, user: { current: state.score.current + parseInt(action.info) } };
     case 'ADD_TO_SCORE':
       return { ...state, score: { current: state.score.current + parseInt(action.info) } };
+
+    case 'IMAGE_PROCESSED':{
+      return { ...state, [action.key]: action.offer};
+    };
     default:
       return state;
   }

@@ -8,6 +8,8 @@ import InfoIcon from 'material-ui-icons/Info';
 import { connect } from 'react-redux';
 import { addToScore } from '../../../actions/scoreActions';
 import { openOffers, closeOffers } from '../../../actions';
+import Snackbar from 'material-ui/Snackbar';
+
 
 const styles = theme => ({
   container: {
@@ -24,6 +26,12 @@ const styles = theme => ({
 });
 
 class MerchantOffers extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      showNotification: false
+    }
+  }
   componentDidMount() {
     openOffers();
   }
@@ -44,7 +52,10 @@ class MerchantOffers extends React.Component {
           title={tile.title}
           subtitle={<span>by: {tile.author}</span>}
           actionIcon={
-            <IconButton onClick={() => this.props.addScore(10)
+            <IconButton onClick={() =>{
+              this.props.addScore(10);
+              this.state.showNotification = true;
+            }
             }>
               <InfoIcon color="rgba(255, 255, 255, 0.54)" />
             </IconButton>
@@ -60,6 +71,20 @@ class MerchantOffers extends React.Component {
           </GridListTile>
           {Object.keys(offers).map(key => offerTile(key, offers[key]))}
         </GridList>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.showNotification}
+          autoHideDuration={6000}
+          // onRequestClose={this.handleRequestClose}
+          SnackbarContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id" style={{color: "#ff4081"}}>Offer availed!!!</span>}
+
+        />
       </div>
     );
   }

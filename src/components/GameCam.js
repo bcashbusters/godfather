@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Camera from './Camera';
 import axios from 'axios';
 import firebase from 'firebase';
+import {imageProcessed} from '../actions';
+import { connect } from 'react-redux';
 
 const style = {
   preview: {
@@ -32,7 +34,7 @@ const style = {
 };
 
 
-export default class GameCam extends Component {
+class GameCam extends Component {
 
   constructor(props) {
     super(props);
@@ -54,58 +56,55 @@ export default class GameCam extends Component {
   }
 
   takePicture() {
+    return new Promise((resolve, reject)=>{
+      this.camera.capture()
+        .then(blob => {
+          let reader = new window.FileReader();
+          reader.readAsDataURL(blob);
+          let baseData;
+          let data1 = new FormData();
 
+          reader.onloadend = function() {
+            baseData = reader.result;
+            data1.append( "json", JSON.stringify({
+              data: baseData
+            }));
+            axios.post("https://us-central1-god-father.cloudfunctions.net/api2/", { data : baseData.slice(23)} )
+              .then(function (response) {
+                let useful = response.data.responses[0];
+                let searchedTexts = useful.textAnnotations;
+                if(searchedTexts && Array.isArray(searchedTexts)) {
+                  searchedTexts.map(x => {
+                     let result = x.description.substring(0,x.description.length-1);
+                     console.log(result)
+                    resolve(result);
+                  })
+                }else{
+                  console.log("nothing found");
+                }
+              });
+            let headers = {
+              'app_id':'dffd21fa',
+              'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
+            };
 
-
-
-    this.camera.capture()
-      .then(blob => {
-        let reader = new window.FileReader();
-        reader.readAsDataURL(blob);
-        let baseData;
-        let data1 = new FormData();
-
-        reader.onloadend = function() {
-          baseData = reader.result;
-          console.dir(baseData);
-          data1.append( "json", JSON.stringify({
-            data: baseData
-          }));
-          axios.post("https://us-central1-god-father.cloudfunctions.net/api2/", { data : baseData.slice(23)} )
-            .then(function (response) {
-              let useful = response.data.responses[0];
-              let searchedTexts = useful.textAnnotations;
-              if(searchedTexts && Array.isArray(searchedTexts)) {
-                searchedTexts.map(x => {
-                  console.log(x.description);
-                })
-              }else{
-                console.log("nothing found");
-              }
-            });
-          let headers = {
-            'app_id':'dffd21fa',
-            'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
-          };
-
-          axios.post("https://api.kairos.com/recognize", {
+            axios.post("https://api.kairos.com/recognize", {
               image : baseData,
               gallery_name : "bcash"
             }, {
-            headers: {
-            'app_id':'dffd21fa',
-            'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
-          }}).then(data =>
+              headers: {
+                'app_id':'dffd21fa',
+                'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
+              }}).then(data =>
             {
-            console.log("image recognition Results :- ");
-            console.log(data);
-            data.data.images.map(c => console.log(c.transaction.subject_id))
+              data.data.images.map(c =>
+                console.log(c.transaction.subject_id))
             }).catch(e => {console.log(e)});
 
-        };
-        this.setState({ uploading: true });
-      })
-
+          };
+          this.setState({ uploading: true });
+        });
+    });
   }
 
   render() {
@@ -114,7 +113,12 @@ export default class GameCam extends Component {
         <Camera
           style={style.preview}
           ref={(cam) => { this.camera = cam; }} id="myFirstCam">
-          <div style={style.captureContainer} onClick={this.takePicture}>
+          <div style={style.captureContainer} onClick={()=>{
+            this.takePicture().then((res)=>{
+              this.props.imageProcessed(res);
+              this.props.history.push('availoffer');
+            })
+          }}>
             <div style={style.captureButton} />
           </div>
         </Camera>
@@ -122,3 +126,15 @@ export default class GameCam extends Component {
     );
   }
 }
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    imageProcessed: (value) => {
+      dispatch(imageProcessed(value))
+    }
+  };
+};
+
+
+export default connect(state => state, mapDispatchToProps)(GameCam);
