@@ -18,7 +18,7 @@ export const openOffers = () => {
   });
 }
 
-export const imageProcessed = (offer)=>{
+export const imageProcessed = (offer) => {
   return {
     type: 'IMAGE_PROCESSED',
     key: 'currOffer',
@@ -32,8 +32,22 @@ export const closeOffers = () => {
 
 export const setUp = () => {
   firebase.database().ref("levels").on("value", snap => {
-    store.dispatch({ type:'LEVELS_CHANGED', levels: snap.val()})
+    store.dispatch({ type: 'LEVELS_CHANGED', levels: snap.val() })
   });
-  firebase.database().ref("merchants").on("value", snap => store.dispatch({ type:'MERCHANTS_CHANGED', merchants: snap.val()}));
+  firebase.database().ref("merchants").on("value", snap => store.dispatch({ type: 'MERCHANTS_CHANGED', merchants: snap.val() }));
 
 };
+
+export const setUpGameData = (userInfo) => {
+  firebase.database().ref("gameInfo").child(userInfo.uid).on('value', snap => {
+    store.dispatch({ type: 'GAME_INFO_CHANGED', userInfo, gameInfo: snap.val() })
+  })
+}
+
+export const acceptOffer = (uid, offerMerchant) => {
+
+}
+
+export const destroyGameData = (uid) => {
+  firebase.database().ref("gameInfo").child(uid).off();
+}

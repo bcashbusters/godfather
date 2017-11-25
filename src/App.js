@@ -55,7 +55,7 @@ class App extends Component {
           firebase.database().ref("avatars").child(userInfo.avatarId).once("value", (snap) => {
             const avatar = snap.val();
             console.log(Object.assign({}, userInfo, { avatar }));
-            this.props.dispatch(loginUser(Object.assign({}, userInfo, { avatar })))
+            this.props.dispatch(loginUser(Object.assign({}, userInfo, { avatar, uid: user.uid })))
           });
         })
       }

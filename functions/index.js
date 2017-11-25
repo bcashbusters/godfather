@@ -89,7 +89,7 @@ const api2 = functions.https.onRequest(app2)
 
 const onUserAdded = functions.auth.user().onCreate(event => {
   const user = event.data;
-  return admin.database().ref("users").child(user.uid).set({
+  const p1 = admin.database().ref("users").child(user.uid).set({
     name: user.displayName,
     avatarId: 'geeky',
     cardBalance: 0,
@@ -104,7 +104,20 @@ const onUserAdded = functions.auth.user().onCreate(event => {
       task5: 'unassigned',
       task6: 'unassigned',
   }
-  })
+  });
+
+  const p2 = admin.database().ref("gameInfo").child(user.uid).set({
+    score: {
+      current: 600,
+      total: 1000
+    },
+    rank: {
+      current: 45,
+      participants: 880
+    }
+  });
+
+  return Promise.all(p1, p2);
 });
 
 module.exports = {
