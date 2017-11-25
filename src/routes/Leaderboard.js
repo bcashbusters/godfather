@@ -63,6 +63,7 @@ class LeaderBoard extends Component {
     this.state = {
       data : {
         friends: [
+          {userName: 'Yogesh', highScore: 160},
           {userName: 'Joe', highScore: 152},
           {userName: 'Jenny', highScore: 120},
           {userName: 'Anthony', highScore: 119},
@@ -75,6 +76,7 @@ class LeaderBoard extends Component {
           {userName: 'Anna', highScore: 190},
           {userName: 'Subin', highScore: 190},
           {userName: 'James', highScore: 179},
+          {userName: 'Yogesh', highScore: 160},
           {userName: 'Bond', highScore: 89},
           {userName: 'Chang', highScore: 65},
           {userName: 'Alan', highScore: 40},
@@ -87,6 +89,7 @@ class LeaderBoard extends Component {
           {userName: 'Jimmy', highScore: 1300},
           {userName: 'Tom', highScore: 1200},
           {userName: 'Aops', highScore: 1100},
+          {userName: 'Yogesh', highScore: 160},
         ]
       },
       actData : [

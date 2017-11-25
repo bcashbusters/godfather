@@ -53,7 +53,7 @@ class MerchantOffers extends React.Component {
           subtitle={<span>by: {tile.author}</span>}
           actionIcon={
             <IconButton onClick={() =>{
-              this.props.addScore(10);
+              addToScore(this.props.userInfo.uid, 10)
               this.state.showNotification = true;
             }
             }>
@@ -91,17 +91,9 @@ class MerchantOffers extends React.Component {
 }
 
 MerchantOffers.propTypes = {
-  classes: PropTypes.object.isRequired,
-  addScore: PropTypes.func.isRequired
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addScore: (value) => {
-      dispatch(addToScore(value))
-    }
-  };
+  classes: PropTypes.object.isRequired
 };
 
 
-export default connect(state => state, mapDispatchToProps)(withStyles(styles)(MerchantOffers));
+
+export default connect(state => state)(withStyles(styles)(MerchantOffers));

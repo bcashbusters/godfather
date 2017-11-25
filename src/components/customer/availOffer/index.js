@@ -54,7 +54,7 @@ class AvailOffer extends React.Component {
         <ListItem button onClick={()=>{
           this.state.offerAvailed = true;
           this.state.showNotification= true;
-          this.props.addScore(50);
+          addToScore(this.props.userInfo.uid, 50);
         }}>
           <Avatar style={{backgroundColor: iconColor}}>
             <Done/>
@@ -101,12 +101,5 @@ class AvailOffer extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addScore: (value) => {
-      dispatch(addToScore(value))
-    }
-  };
-};
 
-export default connect(state => state, mapDispatchToProps)(withStyles(styles)(AvailOffer));
+export default connect(state => state)(withStyles(styles)(AvailOffer));

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Camera from './Camera';
 import axios from 'axios';
 import firebase from 'firebase';
-import {imageProcessed} from '../actions';
+import { imageProcessed } from '../actions';
 import { connect } from 'react-redux';
 
 const style = {
@@ -43,20 +43,13 @@ class GameCam extends Component {
 
   componentWillMount() {
 
-    navigator.mediaDevices.enumerateDevices()
-      .then(function (devices) {
-        devices.forEach(function (device) {
-          console.log(device.kind + ": " + device.label +
-            " id = " + device.deviceId);
-        });
-      })
   }
 
   componentDidMount() {
   }
 
   takePicture() {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       this.camera.capture()
         .then(blob => {
           let reader = new window.FileReader();
@@ -64,12 +57,12 @@ class GameCam extends Component {
           let baseData;
           let data1 = new FormData();
 
-          reader.onloadend = function() {
+          reader.onloadend = function () {
             baseData = reader.result;
-            data1.append( "json", JSON.stringify({
+            data1.append("json", JSON.stringify({
               data: baseData
             }));
-            axios.post("https://us-central1-god-father.cloudfunctions.net/api2/", { data : baseData.slice(23)} )
+            axios.post("https://us-central1-god-father.cloudfunctions.net/api2/", { data: baseData.slice(23) })
               .then(function (response) {
                 let results = [];
                 let useful = response.data.responses[0];
@@ -89,7 +82,6 @@ class GameCam extends Component {
               });
 
           };
-          this.setState({ uploading: true });
         });
     });
   }
@@ -100,8 +92,8 @@ class GameCam extends Component {
         <Camera
           style={style.preview}
           ref={(cam) => { this.camera = cam; }} id="myFirstCam">
-          <div style={style.captureContainer} onClick={()=>{
-            this.takePicture().then((res)=>{
+          <div style={style.captureContainer} onClick={() => {
+            this.takePicture().then((res) => {
               this.props.imageProcessed(res);
               this.props.history.push('availoffer');
             })

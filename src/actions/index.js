@@ -45,7 +45,7 @@ export const setUpGameData = (userInfo) => {
 }
 
 export const acceptOffer = (uid, offerMerchant) => {
-
+  
 }
 
 export const destroyGameData = (uid) => {

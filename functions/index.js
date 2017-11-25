@@ -57,6 +57,12 @@ app2.get('/getOffers/:customerId', (req, res) => {
     res.send('Please send a valid user');
   }
 });
+//app2.use(cors({ origin: true }));
+app2.get('/merchants', (req, res) => {
+  admin.database().ref('merchants').once('value', (snap) => {
+    res.send(snap.val());
+  });
+});
 
 app2.post("*", (req, response) => {
 
