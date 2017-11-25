@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
     render() {
       return (
         <div style={{marginTop: '20px'}}>
-          <Typography type="title" gutterBottom>Welcome to Rewards Ville</Typography>
+          <Typography type="title" gutterBottom>Welcome to Offers Ville</Typography>
           <GameInfo gameData={this.props.gameInfo}/>
         </div>);
     }

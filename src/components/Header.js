@@ -79,7 +79,7 @@ class Header extends Component {
         </Link>
         <Link to="gameHome" style={{ textDecoration: 'none' }}>
           <ListItem button >
-            <ListItemText primary="Rewards Ville" />
+            <ListItemText primary="Offers Ville" />
           </ListItem>
         </Link>
         <Link to="leaderboard" style={{ textDecoration: 'none' }}>

@@ -31,7 +31,7 @@ function Tasks(props) {
         <div className={classes.root}>
           <div style={titleStyle}>
             <Typography
-                type="headline" gutterBottom>Rewards Ville</Typography>
+                type="headline" gutterBottom>Offers Ville</Typography>
           </div>
           <List>
             <Divider />
