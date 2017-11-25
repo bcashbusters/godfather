@@ -39,7 +39,15 @@ class AvailOffer extends React.Component {
   render() {
     let result = '';
     let iconColor = this.state.offerAvailed ? '#228B22' : '#ccc';
-    if(!this.props.merchants[this.props.gameInfo.currOffer]){
+    let isResultFound = false;
+    let merchant = ""
+    for(let key in this.props.gameInfo.currOffer){
+      if(this.props.merchants[this.props.gameInfo.currOffer[key]]){
+        isResultFound = true;
+        merchant = this.props.merchants[this.props.gameInfo.currOffer[key]]
+      }
+    }
+    if(!isResultFound){
       result = 'No Result Found';
     }else {
       result = (<List>
@@ -51,7 +59,7 @@ class AvailOffer extends React.Component {
           <Avatar style={{backgroundColor: iconColor}}>
             <Done/>
           </Avatar>
-          <ListItemText primary={this.props.merchants[this.props.gameInfo.currOffer].offers[1].title} />
+          <ListItemText primary={merchant.offers[1].title} />
         </ListItem>
       </List>)
     };

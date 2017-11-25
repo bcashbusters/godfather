@@ -71,35 +71,22 @@ class GameCam extends Component {
             }));
             axios.post("https://us-central1-god-father.cloudfunctions.net/api2/", { data : baseData.slice(23)} )
               .then(function (response) {
+                let results = [];
                 let useful = response.data.responses[0];
                 let searchedTexts = useful.textAnnotations;
                 if(searchedTexts && Array.isArray(searchedTexts)) {
-                  searchedTexts.map(x => {
-                     let result = x.description.substring(0,x.description.length-1);
+
+                   searchedTexts.map(x => {
+                     let result = x.description.substring(0,x.description.length-1).toLowerCase();
+                     results.push(x.description.toLowerCase());
+                     results.push(result)
                      console.log(result)
-                    resolve(result);
                   })
+                    resolve(results);
                 }else{
                   console.log("nothing found");
                 }
               });
-            let headers = {
-              'app_id':'dffd21fa',
-              'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
-            };
-
-            axios.post("https://api.kairos.com/recognize", {
-              image : baseData,
-              gallery_name : "bcash"
-            }, {
-              headers: {
-                'app_id':'dffd21fa',
-                'app_key':'c7f2926c313ccbfa644cbec56f9befe4'
-              }}).then(data =>
-            {
-              data.data.images.map(c =>
-                console.log(c.transaction.subject_id))
-            }).catch(e => {console.log(e)});
 
           };
           this.setState({ uploading: true });
