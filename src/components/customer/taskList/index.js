@@ -27,17 +27,33 @@ class TaskList extends React.Component {
     for(let key in tasks){
       let secondaryText = "Earn "+  tasks[key].score+"pts";
       let taskColor = tasks[key].isCompleted == true ? "#228B22":"#ccc";
-      taskList.push(<div>
-        <Link to="gameCam" style={{textDecoration: 'none'}}>
-        <ListItem button>
-          <Avatar style={{backgroundColor: taskColor}}>
-            <Done/>
-          </Avatar>
-          <ListItemText primary={tasks[key].name} secondary={secondaryText}/>
-        </ListItem>
-      </Link>
-        <Divider/>
-      </div>);
+
+      if(tasks[key].name.indexOf('amazon') > -1){
+        taskList.push(<div>
+          <a href='http://www.amazon.com' style={{textDecoration: 'none'}}>
+            <ListItem button>
+              <Avatar style={{backgroundColor: taskColor}}>
+                <Done/>
+              </Avatar>
+              <ListItemText primary={tasks[key].name} secondary={secondaryText}/>
+            </ListItem>
+          </a>
+          <Divider/>
+        </div>);
+      }else {
+        taskList.push(<div>
+          <Link to="gameHome" style={{textDecoration: 'none'}}>
+            <ListItem button>
+              <Avatar style={{backgroundColor: taskColor}}>
+                <Done/>
+              </Avatar>
+              <ListItemText primary={tasks[key].name} secondary={secondaryText}/>
+            </ListItem>
+          </Link>
+          <Divider/>
+        </div>);
+      }
+
 
     }
     return taskList;

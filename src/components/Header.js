@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 40,
   },
   list: {
     width: '300px',
@@ -112,7 +112,7 @@ class Header extends Component {
             </IconButton>
 
             <div className={classes.flex}>
-              <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px' />
+              <img src="images/bank-logo.svg" alt='bank-logo' height='60px' width='60px' style={{position: 'absolute', top:'calc(50% - 25px)', left: 'calc(50% - 30px)'}} />
             </div>
             {(this.props.user.name)? <Button color="contrast" onClick={this.logout}>Logout</Button>: <span />}
           </Toolbar>
